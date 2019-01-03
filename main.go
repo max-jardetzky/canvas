@@ -57,7 +57,7 @@ func main() {
 		mutex:  &sync.Mutex{},
 		colors: make([]string, gridSize),
 	}
-	fmt.Println("Startup successful! Type 'clear' to clear board.")
+	fmt.Println("Startup successful on port 8080. Type 'clear' to clear board.")
 	go launchCLI()
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, "index.html")
