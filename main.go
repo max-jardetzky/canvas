@@ -46,7 +46,7 @@ var gridColor string
 
 func main() {
 	rand.Seed(time.Now().UnixNano())
-	srv = &http.Server{Addr: ":80"}
+	srv = &http.Server{Addr: ":8080"}
 	gridSize = 13 * 13
 	gridColor = "rgb(99, 110, 114)"
 	clientList = ClientList{
