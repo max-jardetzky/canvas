@@ -88,7 +88,6 @@ func launchHTTP(w http.ResponseWriter, r *http.Request) {
 			// Read message from browser
 			_, msg, err := conn.ReadMessage()
 			if len(msg) > 0 {
-				fmt.Println(string(msg))
 				grid.mutex.Lock()
 				splitMsg := strings.SplitN(string(msg), " ", 2)
 				if index, err := strconv.Atoi(splitMsg[0]); err == nil {

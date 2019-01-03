@@ -79,7 +79,7 @@ function draw(id) {
     if (rainbow) {
         socket.send(id + " " + colors[counter]);
         counter++;
-        if (counter > 6) {
+        if (counter >= colors.length) {
             counter = 0;
         }
     } else if (random) {
