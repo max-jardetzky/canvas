@@ -1,0 +1,78 @@
+/* index.css */
+body {
+    background-color: rgb(45, 52, 54) !important;  
+}
+#grid {
+    height: 669.5px;
+    width: 669.5px;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin: auto;
+}
+#picker {
+    height: 463.5px;
+    width: 50px;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 150px;
+    margin: auto;
+}
+.row {
+    height: 50px;
+    margin-top: 1.5px;
+}
+.gridRow {
+    width: 650px;
+}
+.pickerRow {
+    width: 50px;
+}
+.col {
+    height: 50px;
+    width: 50px;
+    border-radius: 5px;
+}
+.gridCol {
+    margin: 0.75px;
+}
+.pickerCol {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#red {
+    color: rgb(235, 59, 90);
+}
+#orange {
+    color: rgb(250, 130, 49);
+}
+#yellow {
+    color: rgb(254, 211, 48);
+}
+#green {
+    color: rgb(32, 191, 107);
+}
+#blue {
+    color: rgb(56, 103, 214);
+}
+#purple {
+    color: rgb(136, 84, 208);
+}
+#gray {
+    color: rgb(99, 110, 114);
+}
+#rainbow {
+    color:rgb(45, 52, 54);
+}
+.selected {
+    border-radius: 20px;
+    font-size: 25px;
+}
+.unselected {
+    border-radius: 5px;
+    font-size: 20px;
+}
