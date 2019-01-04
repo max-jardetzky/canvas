@@ -1,24 +1,27 @@
 // index.js
 var windowAddr = window.location.href.substring(window.location.href.indexOf("/", window.location.href.indexOf("/") + 1) + 1, window.location.href.length);
 var socket;
-var colors = ["rgb(235, 59, 90)", "rgb(250, 130, 49)", "rgb(254, 211, 48)", "rgb(32, 191, 107)", "rgb(56, 103, 214)", "rgb(136, 84, 208)"];
+var colors = ["rgb(235, 59, 90)", "rgb(250, 130, 49)", "rgb(254, 211, 48)", "rgb(32, 191, 107)", "rgb(56, 103, 214)", "rgb(136, 84, 208)", "rgb(0, 0, 0)", "rgb(255, 255, 255)"];
 var color = "rgb(235, 59, 90)"; // ^ German Palette for picker, American Palette for background (FlatUIColors)
 var rainbow = false;
 var random = false;
-var counter = 0;
+var pencilCol = document.getElementById("pencilCol");
+var counter1 = 0;
+var counter2 = 0;
+var smallPencil = true;
+const gridWidth = 25;
 openSocket();
 
 var container = document.getElementById("grid");
-var counter = 0;
-for (var i = 0; i < 13; i++) {
+for (var i = 0; i < 25; i++) {
     var row = document.createElement("div");
     row.className = "row gridRow";
-    for (var j = 0; j < 13; j++) {
+    for (var j = 0; j < 25; j++) {
         var col = document.createElement("div");
         col.className = "col gridCol"; 
-        col.id = counter.toString();
+        col.id = counter1.toString();
         col.style.backgroundColor = "rgb(99, 110, 114)";
-        counter++;
+        counter1++;
         row.appendChild(col);
     }
     container.appendChild(row);
@@ -52,6 +55,16 @@ for (var i = 0; i < gridCols.length; i++) {
     }
 }
 
+pencilCol.onclick = function() {
+    if (this.className == "col sizeCol small") {
+        smallPencil = false;
+        this.className = "col sizeCol large";
+    } else {
+        smallPencil = true;
+        this.className = "col sizeCol small";
+    }
+}
+
 document.addEventListener("mousedown", function(event){
     for (var i = 0; i < gridCols.length; i++) {
         gridCols[i].onmouseover = function() {
@@ -68,6 +81,9 @@ document.addEventListener("mouseup", function(event){
 
 document.addEventListener("keydown", function(event){
     switch (event.keyCode) {
+        case 192: //`
+            pencilCol.click();
+            break;
         case 49: //1
             pickerCols[0].click(); //red
             break;
@@ -87,14 +103,19 @@ document.addEventListener("keydown", function(event){
             pickerCols[5].click(); //purple
             break;
         case 55: //7
-            pickerCols[6].click(); //gray
+            pickerCols[6].click(); //black
             break;
         case 56: //8
-            pickerCols[7].click(); //rainbow
+            pickerCols[7].click(); //white
             break;
         case 57: //9
-            pickerCols[8].click(); //random
+            pickerCols[8].click(); //rainbow
             break;
+        case 48: //0
+            pickerCols[9].click(); //random
+            break;
+        case 27: //escape
+            pickerCols[10].click(); //erase
     }
 })
 
@@ -109,14 +130,50 @@ function openSocket() {
 
 function draw(id) {
     if (rainbow) {
-        socket.send(id + " " + colors[counter]);
-        counter++;
-        if (counter >= colors.length) {
-            counter = 0;
+        send(id, colors[counter2]);
+        counter2++;
+        if (counter2 >= colors.length) {
+            counter2 = 0;
         }
     } else if (random) {
-        socket.send(id + " " + colors[Math.floor(Math.random()*colors.length)]);
+        send(id, colors[Math.floor(Math.random()*colors.length)]);
     } else {
+        send(id, color);
+    }
+}
+
+function send(id, color) {
+    if (smallPencil) {
         socket.send(id + " " + color);
+    } else {
+        intId = parseInt(id);
+        var squares = new Array(9);
+        if ((intId + 1) % 25 != 1) {
+            squares[0] = intId - gridWidth - 1; //top left
+            squares[3] = intId - 1; //left
+            squares[6] = intId + gridWidth - 1; //bottom left
+        } else {
+            squares[0] = -1; //top left
+            squares[3] = -1; //left
+            squares[6] = -1; //bottom left
+        }
+        squares[1] = intId - gridWidth; //top middle
+        squares[4] = intId; //center
+        squares[7] = intId + gridWidth; //bottom middle
+        if ((intId + 1) % 25 != 0) {
+            squares[2] = intId - gridWidth + 1; //top right
+            squares[5] = intId + 1; //right
+            squares[8] = intId + gridWidth + 1; //bottom right
+        } else {
+            squares[2] = -1; //top right
+            squares[5] = -1; //right
+            squares[8] = -1; //bottom right
+        }
+        for (var i = 0; i < squares.length; i++) {
+            console.log(squares[i]);
+            if (squares[i] >= 0 && squares[i] < gridWidth * gridWidth) {
+                socket.send(squares[i] + " " + color);
+            }
+        }
     }
 }

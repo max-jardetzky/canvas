@@ -47,7 +47,7 @@ var gridColor string
 func main() {
 	rand.Seed(time.Now().UnixNano())
 	srv = &http.Server{Addr: ":8080"}
-	gridSize = 13 * 13
+	gridSize = 25 * 25
 	gridColor = "rgb(99, 110, 114)"
 	clientList = ClientList{
 		mutex:   &sync.Mutex{},
@@ -91,7 +91,9 @@ func launchHTTP(w http.ResponseWriter, r *http.Request) {
 				grid.mutex.Lock()
 				splitMsg := strings.SplitN(string(msg), " ", 2)
 				if index, err := strconv.Atoi(splitMsg[0]); err == nil {
-					grid.colors[index] = splitMsg[1]
+					if index >= 0 && index < gridSize {
+						grid.colors[index] = splitMsg[1]
+					}
 				} else {
 					panic(err)
 				}

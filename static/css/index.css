@@ -1,10 +1,17 @@
 /* index.css */
 body {
-    background-color: rgb(45, 52, 54) !important;  
+    background-color: rgb(45, 52, 54) !important;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
 }
 #grid {
-    height: 669.5px;
-    width: 669.5px;
+    height: 650px;
+    width: 650px;
     position: absolute;
     top: 0px;
     bottom: 0px;
@@ -12,8 +19,8 @@ body {
     right: 0px;
     margin: auto;
 }
-#picker {
-    height: 463.5px;
+#sizePicker {
+    height: 50px;
     width: 50px;
     position: absolute;
     top: 0px;
@@ -21,28 +28,46 @@ body {
     left: 150px;
     margin: auto;
 }
+#picker {
+    height: 561px;
+    width: 50px;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    right: 150px;
+    margin: auto;
+}
 .row {
-    height: 50px;
-    margin-top: 1.5px;
+    margin-top: 1px;
 }
 .gridRow {
     width: 650px;
+    height: 25px;
+    flex-wrap: nowrap !important;
 }
 .pickerRow {
     width: 50px;
 }
-.col {
+.gridCol {
+    width: 25px;
+    height: 25px;
+    padding: 0px !important;
+    margin-left: 1px;
+    border-radius: 3px;
+}
+.pickerCol, .sizeCol {
     height: 50px;
     width: 50px;
     border-radius: 5px;
-}
-.gridCol {
-    margin: 0.75px;
-}
-.pickerCol {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.sizecol.small {
+    font-size: 20px;
+}
+.sizecol.large {
+    font-size: 30px;
 }
 #red {
     color: rgb(235, 59, 90);
@@ -62,11 +87,17 @@ body {
 #purple {
     color: rgb(136, 84, 208);
 }
-#gray {
-    color: rgb(99, 110, 114);
+#black {
+    color: rgb(0, 0, 0);
+}
+#white {
+    color: rgb(255, 255, 255);
 }
 #rainbow {
     color:rgb(45, 52, 54);
+}
+#erase {
+    color: rgb(99, 110, 114);
 }
 .selected {
     border-radius: 20px;
