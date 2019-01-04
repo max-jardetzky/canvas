@@ -139,7 +139,7 @@ function draw(id) {
             counter2 = 0;
         }
     } else if (random) {
-        send(id, colors[Math.floor(Math.random()*colors.length)]);
+        send(id, colors[Math.floor(Math.random()*blackIndex)]);
     } else {
         send(id, color);
     }
