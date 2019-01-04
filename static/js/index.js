@@ -7,6 +7,7 @@ var color = "rgb(235, 59, 90)"; // ^ German Palette for picker, American Palette
 var rainbow = false;
 var random = false;
 var pencilCol = document.getElementById("pencilCol");
+var userText = document.getElementById("userText");
 var counter1 = 0;
 var counter2 = 0;
 var smallPencil = true;
@@ -126,8 +127,24 @@ function openSocket() {
     socket = new WebSocket("ws://" + windowAddr + "draw");
 
     socket.onmessage = function(e) {
-        var data = e.data.match(/^(\S+)\s(.*)/).slice(1);
-        document.getElementById(data[0]).style.backgroundColor = data[1];
+        console.log(e.data);
+        var spaceIndex = e.data.indexOf(" ");
+        var command = e.data.substring(0, spaceIndex);
+        var data = e.data.substring(spaceIndex + 1);
+        switch (command) {
+            case "canvas":
+                var splitData = data.match(/^(\S+)\s(.*)/).slice(1);
+                document.getElementById(splitData[0]).style.backgroundColor = splitData[1];
+                break;
+            case "users":
+                console.log(data);
+                userText.innerText = data + " connected user";
+                if (data != "1") {
+                    userText.innerText += "s";
+                }
+                break;
+        }
+        
     };
 }
 
@@ -173,7 +190,6 @@ function send(id, color) {
             squares[8] = -1; //bottom right
         }
         for (var i = 0; i < squares.length; i++) {
-            console.log(squares[i]);
             if (squares[i] >= 0 && squares[i] < gridWidth * gridWidth) {
                 socket.send(squares[i] + " " + color);
             }

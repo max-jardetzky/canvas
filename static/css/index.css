@@ -55,6 +55,24 @@ body {
     right: 150px;
     margin: auto;
 }
+#userWrapper {
+    height: 50px;
+    width: 500px;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#userText {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #636e72;
+    font-weight: 600;
+    font-size: 15px;
+}
 .row {
     margin-top: 1px;
 }

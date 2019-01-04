@@ -80,13 +80,19 @@ func launchHTTP(w http.ResponseWriter, r *http.Request) {
 		clientList.mutex.Lock()
 		clientList.clients = append(clientList.clients, client)
 		clientList.mutex.Unlock()
-		defer clientList.deleteClient(client)
+
+		defer func() {
+			clientList.deleteClient(client)
+			clientList.sendAll("users " + strconv.Itoa(len(clientList.clients)))
+		}()
 
 		for i, v := range grid.colors {
 			if len(v) > 0 {
-				clientList.sendClient(client, strconv.Itoa(i)+" "+v)
+				clientList.sendClient(client, "canvas "+strconv.Itoa(i)+" "+v)
 			}
 		}
+
+		clientList.sendAll("users " + strconv.Itoa(len(clientList.clients)))
 
 		for {
 			// Read message from browser
@@ -102,7 +108,7 @@ func launchHTTP(w http.ResponseWriter, r *http.Request) {
 					panic(err)
 				}
 				grid.mutex.Unlock()
-				clientList.sendAll(string(msg))
+				clientList.sendAll("canvas " + string(msg))
 			}
 			if err != nil {
 				return
@@ -119,7 +125,7 @@ func launchCLI() {
 			grid.mutex.Lock()
 			grid.colors = make([]string, gridSize)
 			for i := range grid.colors {
-				clientList.sendAll(strconv.Itoa(i) + " " + gridColor)
+				clientList.sendAll("canvas " + strconv.Itoa(i) + " " + gridColor)
 			}
 			grid.mutex.Unlock()
 			fmt.Println("board cleared")
