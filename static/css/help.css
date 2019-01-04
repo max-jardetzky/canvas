@@ -29,6 +29,9 @@ body {
     color: #dfe6e9;
     font-weight: 600;
 }
+#helpBox h3 {
+    font-size: 23px;
+}
 #helpBox hr {
     border: 2.5px solid #636e72;
     width: 540px;
