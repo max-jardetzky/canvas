@@ -70,7 +70,7 @@ body {
 }
 .selected {
     border-radius: 20px;
-    font-size: 25px;
+    font-size: 30px;
 }
 .unselected {
     border-radius: 5px;

@@ -66,6 +66,38 @@ document.addEventListener("mouseup", function(event){
     }
 }, false);
 
+document.addEventListener("keydown", function(event){
+    switch (event.keyCode) {
+        case 49: //1
+            pickerCols[0].click(); //red
+            break;
+        case 50: //2
+            pickerCols[1].click(); //orange
+            break;
+        case 51: //3
+            pickerCols[2].click(); //yellow
+            break;
+        case 52: //4
+            pickerCols[3].click(); //green
+            break;
+        case 53: //5
+            pickerCols[4].click(); //blue
+            break;
+        case 54: //6
+            pickerCols[5].click(); //purple
+            break;
+        case 55: //7
+            pickerCols[6].click(); //gray
+            break;
+        case 56: //8
+            pickerCols[7].click(); //rainbow
+            break;
+        case 57: //9
+            pickerCols[8].click(); //random
+            break;
+    }
+})
+
 function openSocket() {
     socket = new WebSocket("ws://" + windowAddr + "draw");
 
