@@ -9,6 +9,24 @@ body {
             user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
 }
+#titleContainer {
+    height: 100px;
+    width: 200px;
+    position: absolute;
+    top: 0px;
+    bottom: 385px;
+    left: 75px;
+    margin: auto;
+}
+#helpContainer {
+    height: 100px;
+    width: 200px;
+    position: absolute;
+    top: 415px;
+    bottom: 0px;
+    left: 75px;
+    margin: auto;
+}
 #grid {
     height: 650px;
     width: 650px;
@@ -40,6 +58,10 @@ body {
 .row {
     margin-top: 1px;
 }
+.titleRow {
+    width: 200px;
+    height: 50px;
+}
 .gridRow {
     width: 650px;
     height: 25px;
@@ -47,6 +69,11 @@ body {
 }
 .pickerRow {
     width: 50px;
+}
+.titleCol, .helpCol {
+    width: 250px;
+    height: 50px;
+    text-align: center;
 }
 .gridCol {
     width: 25px;
@@ -68,6 +95,25 @@ body {
 }
 .sizecol.large {
     font-size: 30px;
+}
+.titleCol p, .helpCol p {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #636e72;
+    font-weight: 600;
+    position: relative;
+    top: 50%;
+}
+.helpCol a:hover {
+    color: #636e72;
+}
+#header {
+    font-size: 40px;
+}
+#subheader {
+    font-size: 18px;
+}
+#helpText {
+    font-size: 15px;
 }
 #red {
     color: rgb(235, 59, 90);

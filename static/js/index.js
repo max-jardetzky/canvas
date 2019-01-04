@@ -2,6 +2,7 @@
 var windowAddr = window.location.href.substring(window.location.href.indexOf("/", window.location.href.indexOf("/") + 1) + 1, window.location.href.length);
 var socket;
 var colors = ["rgb(235, 59, 90)", "rgb(250, 130, 49)", "rgb(254, 211, 48)", "rgb(32, 191, 107)", "rgb(56, 103, 214)", "rgb(136, 84, 208)", "rgb(0, 0, 0)", "rgb(255, 255, 255)"];
+var blackIndex = 6;
 var color = "rgb(235, 59, 90)"; // ^ German Palette for picker, American Palette for background (FlatUIColors)
 var rainbow = false;
 var random = false;
@@ -11,6 +12,8 @@ var counter2 = 0;
 var smallPencil = true;
 const gridWidth = 25;
 openSocket();
+
+document.oncontextmenu = new Function("return false;");
 
 var container = document.getElementById("grid");
 for (var i = 0; i < 25; i++) {
@@ -132,7 +135,7 @@ function draw(id) {
     if (rainbow) {
         send(id, colors[counter2]);
         counter2++;
-        if (counter2 >= colors.length) {
+        if (counter2 >= blackIndex) {
             counter2 = 0;
         }
     } else if (random) {
