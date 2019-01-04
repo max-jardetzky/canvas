@@ -1,0 +1,100 @@
+/* help.css */
+body {
+    background-color: rgb(45, 52, 54) !important;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+#helpBox {
+    background-color: rgb(45, 52, 54); 
+    height: 550px;
+    width: 550px;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin: auto;
+    border-radius: 25px;
+    text-align: center;
+    padding: 25px;
+    border: 5px solid #636e72;
+}
+#helpBox h1, #helpBox h3 {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #dfe6e9;
+    font-weight: 600;
+}
+#helpBox hr {
+    border: 2.5px solid #636e72;
+    width: 540px;
+    margin-left: -25px;
+}
+#returnContainer {
+    height: 100px;
+    width: 200px;
+    position: absolute;
+    top: 415px;
+    bottom: 0px;
+    left: 75px;
+    margin: auto;
+}
+.row {
+    margin-top: 1px;
+}
+.titleRow {
+    width: 200px;
+    height: 50px;
+}
+.returnCol {
+    width: 250px;
+    height: 50px;
+    text-align: center;
+}
+.returnCol p {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #636e72;
+    font-weight: 600;
+    position: relative;
+    top: 50%;
+}
+.returnCol a:hover {
+    color: #636e72;
+}
+#returnText {
+    font-size: 15px;
+}
+#red {
+    color: rgb(235, 59, 90);
+}
+#orange {
+    color: rgb(250, 130, 49);
+}
+#yellow {
+    color: rgb(254, 211, 48);
+}
+#green {
+    color: rgb(32, 191, 107);
+}
+#blue {
+    color: rgb(56, 103, 214);
+}
+#purple {
+    color: rgb(136, 84, 208);
+}
+#black {
+    color: rgb(0, 0, 0);
+}
+#white {
+    color: rgb(255, 255, 255);
+}
+#rainbow {
+    color:rgb(45, 52, 54);
+}
+#erase {
+    color: rgb(99, 110, 114);
+}
