@@ -58,16 +58,16 @@ func main() {
 		mutex:  &sync.Mutex{},
 		colors: make([]string, gridSize),
 	}
-	fmt.Println("Startup successful on port", port, ". Type 'clear' to clear board.")
+	fmt.Printf("Startup successful on port %s. Type 'clear' to clear board.", port)
 	go launchCLI()
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		http.ServeFile(w, r, "index.html")
+	http.HandleFunc("/canvas/", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "static/html/index.html")
 	})
-	http.HandleFunc("/draw", launchHTTP)
-	http.HandleFunc("/help", func(w http.ResponseWriter, r *http.Request) {
-		http.ServeFile(w, r, "help.html")
+	http.HandleFunc("/canvas/draw", launchHTTP)
+	http.HandleFunc("/canvas/help", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "static/html/help.html")
 	})
-	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
+	http.Handle("/canvas/static/", http.StripPrefix("/canvas/static/", http.FileServer(http.Dir("static"))))
 	if err := srv.ListenAndServe(); err != nil {
 		fmt.Println(err)
 	}
