@@ -58,7 +58,7 @@ func main() {
 		mutex:  &sync.Mutex{},
 		colors: make([]string, gridSize),
 	}
-	fmt.Printf("Startup successful on port %s. Type 'clear' to clear board.", port)
+	fmt.Printf("Startup successful on port %s. Type 'clear' to clear board.\n", port)
 	go launchCLI()
 	http.HandleFunc("/canvas/", func(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, "static/html/index.html")
