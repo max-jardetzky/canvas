@@ -45,8 +45,9 @@ var gridSize int
 var gridColor string
 
 func main() {
+	port := ":80"
 	rand.Seed(time.Now().UnixNano())
-	srv = &http.Server{Addr: ":8080"}
+	srv = &http.Server{Addr: port}
 	gridSize = 25 * 25
 	gridColor = "rgb(99, 110, 114)"
 	clientList = ClientList{
@@ -57,7 +58,7 @@ func main() {
 		mutex:  &sync.Mutex{},
 		colors: make([]string, gridSize),
 	}
-	fmt.Println("Startup successful on port 8080. Type 'clear' to clear board.")
+	fmt.Println("Startup successful on port", port, ". Type 'clear' to clear board.")
 	go launchCLI()
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, "index.html")
