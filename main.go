@@ -45,7 +45,7 @@ var gridSize int
 var gridColor string
 
 func main() {
-	port := ":8081"
+	port := ":80"
 	rand.Seed(time.Now().UnixNano())
 	srv = &http.Server{Addr: port}
 	gridSize = 25 * 25
